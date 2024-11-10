@@ -1,0 +1,36 @@
+version: '3.4'
+
+services:
+  ticketapi.api:
+    image: ${DOCKER_REGISTRY-}ticketapiapi
+    build:
+      context: .
+      dockerfile: src/Ticket/TicketApi.Api/Dockerfile
+
+
+  paymentapi.api:
+    image: ${DOCKER_REGISTRY-}paymentapiapi
+    build:
+      context: .
+      dockerfile: src/Payment/PaymentApi.Api/Dockerfile
+
+
+  notificationapi.api:
+    image: ${DOCKER_REGISTRY-}notificationapiapi
+    build:
+      context: .
+      dockerfile: src/Notfication/NotificationApi.Api/Dockerfile
+
+
+  bookapi.api:
+    image: ${DOCKER_REGISTRY-}bookapiapi
+    build:
+      context: .
+      dockerfile: src/Book/BookApi.Api/Dockerfile  
+      
+  eventease.web:
+    image: ${DOCKER_REGISTRY-}eventeaseweb
+    build:
+      context: .
+      dockerfile: src/Web/EventEase.Web/Dockerfile
+

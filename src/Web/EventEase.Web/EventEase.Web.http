@@ -1,0 +1,6 @@
+@EventEase.Web_HostAddress = http://localhost:5012
+
+GET {{EventEase.Web_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

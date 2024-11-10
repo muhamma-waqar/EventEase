@@ -1,0 +1,18 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "composeLaunchAction": "LaunchBrowser",
+      "composeLaunchServiceName": "eventease.web",
+      "composeLaunchUrl": "{Scheme}://localhost:{ServicePort}/swagger",
+      "serviceActions": {
+        "ticketapi.api": "StartDebugging",
+        "paymentapi.api": "StartDebugging",
+        "notificationapi.api": "StartDebugging",
+        "bookapi.api": "StartDebugging",
+        "eventease.web": "StartDebugging"
+      }
+    }
+  }
+}
