@@ -7,20 +7,17 @@ services:
       context: .
       dockerfile: src/Ticket/TicketApi.Api/Dockerfile
 
-
   paymentapi.api:
     image: ${DOCKER_REGISTRY-}paymentapiapi
     build:
       context: .
       dockerfile: src/Payment/PaymentApi.Api/Dockerfile
 
-
   notificationapi.api:
     image: ${DOCKER_REGISTRY-}notificationapiapi
     build:
       context: .
       dockerfile: src/Notfication/NotificationApi.Api/Dockerfile
-
 
   bookapi.api:
     image: ${DOCKER_REGISTRY-}bookapiapi

@@ -15,11 +15,21 @@ COPY . .
 WORKDIR "/src/src/Web/EventEase.Web"
 RUN dotnet build "./EventEase.Web.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
+FROM node:12.18-alpine AS client 
+ARG skip_client_build=false 
+WORKDIR /app 
+COPY ["src/Web/EventEase.Web/ClientApp/", "."]
+RUN  if [ "$skip_client_build" = "true" ] ; then echo "Skipping npm install" ; else npm install ; fi
+RUN  if [ "$skip_client_build" = "true" ] ; then mkdir -p dist ; else npm run-script build -- --prod ; fi
+
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "./EventEase.Web.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
+ENV ASPNETCORE_URLS http://*:8080
+
 COPY --from=publish /app/publish .
+COPY --from=client /app/dist /app/ClientApp/dist
 ENTRYPOINT ["dotnet", "EventEase.Web.dll"]
