@@ -29,5 +29,11 @@ services:
     image: ${DOCKER_REGISTRY-}eventeaseweb
     build:
       context: .
-      dockerfile: src/Web/EventEase.Web/Dockerfile
+      dockerfile: src/Web/EventEase.Web/Dockerfile  
+
+  eventease.angular.app:
+    image: ${DOCKER_REGISTRY-}eventease.angular.app
+    build:
+      context: .
+      dockerfile: src/Web/EventEase.Web/ClientApp/Dockerfile
 

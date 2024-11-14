@@ -60,3 +60,12 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+
+  eventease.angular.app:
+    image: eventeaseangularapp:dev
+    container_name: eventease.angular.app
+    ports:
+      - "4200:4200"
+      - "49156:49153"
+    volumes:
+      - ./Web/Calrom.Web/ClientApp:/app
