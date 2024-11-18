@@ -9,22 +9,22 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["src/Web/EventEase.Web/EventEase.Web.csproj", "src/Web/EventEase.Web/"]
-RUN dotnet restore "./src/Web/EventEase.Web/EventEase.Web.csproj"
+COPY ["Web/EventEase.Web/EventEase.Web.csproj", "Web/EventEase.Web/"]
+RUN dotnet restore "Web/EventEase.Web/EventEase.Web.csproj"
 COPY . .
-WORKDIR "/src/src/Web/EventEase.Web"
-RUN dotnet build "./EventEase.Web.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/Web/EventEase.Web"
+RUN dotnet build "EventEase.Web.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-FROM node:12.18-alpine AS client 
+FROM node:20.9.0-alpine AS client 
 ARG skip_client_build=false 
 WORKDIR /app 
-COPY ["src/Web/EventEase.Web/ClientApp/", "."]
+COPY ["Web/EventEase.Web/ClientApp/", "."]
 RUN  if [ "$skip_client_build" = "true" ] ; then echo "Skipping npm install" ; else npm install ; fi
-RUN  if [ "$skip_client_build" = "true" ] ; then mkdir -p dist ; else npm run-script build -- --prod ; fi
+RUN  if [ "$skip_client_build" = "true" ]; then mkdir -p dist; else npm run build -- --configuration production; fi
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./EventEase.Web.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "EventEase.Web.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app

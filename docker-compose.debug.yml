@@ -1,0 +1,42 @@
+version: '3.4'
+
+services:
+  ticketapi.api:
+    image: ${DOCKER_REGISTRY-}ticketapiapi
+    build:
+      target: build
+    volumes:
+      - .\Ticket\TicketApi.Api:/app
+      - .:/src
+      - $USERPROFILE\vsdbg\vs2017u5:/remote_debugger:rw
+    entrypoint : dotnet /app/bin/Debug/net5.0/TicketApi.Api.dll
+
+  paymentapi.api:
+    image: ${DOCKER_REGISTRY-}paymentapiapi
+    build:
+      target: build
+    volumes:
+      - .\Payment\PaymentApi.Api:/app
+      - .:/src
+      - $USERPROFILE\vsdbg\vs2017u5:/remote_debugger:rw
+    entrypoint : dotnet /app/bin/Debug/net5.0/PaymentApi.Api.dll 
+
+  notificationapi.api:
+    image: ${DOCKER_REGISTRY-}notificationapiapi
+    build:
+      target: build
+    volumes:
+      - .\Notification\NotificationApi.Api:/app
+      - .:/src
+      - $USERPROFILE\vsdbg\vs2017u5:/remote_debugger:rw
+    entrypoint : dotnet /app/bin/Debug/net5.0/NotificationApi.Api.dll 
+    
+  bookapi.api:
+    image: ${DOCKER_REGISTRY-}bookapiapi
+    build:
+      target: build
+    volumes:
+      - .\Book\BookApi.Api:/app
+      - .:/src
+      - $USERPROFILE\vsdbg\vs2017u5:/remote_debugger:rw
+    entrypoint : dotnet /app/bin/Debug/net5.0/BookApi.Api.dll

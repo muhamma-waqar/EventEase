@@ -17,10 +17,11 @@ if (!app.Environment.IsDevelopment())
 }
 app.UseSpa(spa =>
 {
+    var value = app.Configuration["NG_DEV_SERVER"]!;
     spa.Options.SourcePath = "ClientApp";
     if (app.Environment.IsDevelopment())
     {
-        spa.UseProxyToSpaDevelopmentServer(app.Configuration["NG_DEV_SERVER"]);
+        spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
     }
     spa.Options.DefaultPageStaticFileOptions = new StaticFileOptions
     {

@@ -68,4 +68,4 @@ services:
       - "4200:4200"
       - "49156:49153"
     volumes:
-      - ./Web/Calrom.Web/ClientApp:/app
+      - ./src/Web/EventEase.Web/ClientApp:/app
