@@ -18,7 +18,7 @@ RUN dotnet build "EventEase.Web.csproj" -c $BUILD_CONFIGURATION -o /app/build
 FROM node:20.9.0-alpine AS client 
 ARG skip_client_build=false 
 WORKDIR /app 
-COPY ["Web/EventEase.Web/ClientApp/", "."]
+COPY ["src/Web/EventEase.Web/ClientApp/", "."]
 RUN  if [ "$skip_client_build" = "true" ] ; then echo "Skipping npm install" ; else npm install ; fi
 RUN  if [ "$skip_client_build" = "true" ]; then mkdir -p dist; else npm run build -- --configuration production; fi
 

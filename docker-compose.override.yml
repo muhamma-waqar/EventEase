@@ -61,11 +61,25 @@ services:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
 
+  # eventease.angular.app:
+  #   image: eventeaseangularapp:dev
+  #   container_name: eventease.angular.app
+  #   ports:
+  #     - "4200:4200"
+  #     - "49156:49153"
+  #   volumes:
+  #     - ./src/Web/EventEase.Web/ClientApp:/
+
   eventease.angular.app:
     image: eventeaseangularapp:dev
-    container_name: eventease.angular.app
+    container_name: flight-horizon-angular-client
+    build:
+      context: ./src/Web/EventEase.Web/ClientApp
+      dockerfile: Dockerfile.develop
     ports:
-      - "4200:4200"
-      - "49156:49153"
+      - "4200:4200"  # Host port 4700 maps to container port 4200
     volumes:
-      - ./src/Web/EventEase.Web/ClientApp:/app
+      - ./src/Web/EventEase.Web/ClientApp:/usr/src/app
+      - /usr/src/app/node_modules
+    command: ["ng", "serve", "--host", "0.0.0.0", "--poll", "2000"]
+    user: "root"
