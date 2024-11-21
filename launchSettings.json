@@ -9,7 +9,7 @@
         "notificationapi.api": "StartDebugging",
         "bookapi.api": "StartDebugging",
         "eventease.web": "StartDebugging",
-        "eventease.angular.app": "StartWithoutDebugging"
+        "angular-client": "StartWithoutDebugging"
       }
     }
   }

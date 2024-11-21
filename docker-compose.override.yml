@@ -60,13 +60,13 @@ services:
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
 
   angular-client:
-   container_name: flight-horizon-angular-client
+   container_name: Angular.Client
    build:
-    context: ./src/Web/EventEase.Web/ClientApp1
+    context: ./src/Web/EventEase.Web/ClientApp
     dockerfile: Dockerfile
    ports:
     - "4700:4200"  # Map container port 4200 to host port 4700
    volumes:
-    - ./src/Web/EventEase.Web/ClientApp1:/usr/src/app
+    - ./src/Web/EventEase.Web/ClientApp:/usr/src/app
     - /usr/src/app/node_modules
    command: ["ng", "serve", "--host", "0.0.0.0", "--poll", "2000"]
