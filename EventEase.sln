@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34616.47
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{40B721A9-5E16-41CA-90DF-0B6AFB2EBD46}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{40B721A9-5E16-41CA-90DF-0B6AFB2EBD46}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Book", "Book", "{762FF843-EEA8-4061-8E93-F91CCF72D3E9}"
 EndProject
