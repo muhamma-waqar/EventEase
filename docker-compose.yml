@@ -23,7 +23,13 @@ services:
     image: ${DOCKER_REGISTRY-}bookapiapi
     build:
       context: .
-      dockerfile: src/Book/BookApi.Api/Dockerfile  
+      dockerfile: src/Book/BookApi.Api/Dockerfile 
+
+  eventapi.api:
+    image: ${DOCKER_REGISTRY-}eventapiapi
+    build:
+      context: .
+      dockerfile: src/Event/EventApi.Api/Dockerfile
       
   eventease.web:
     image: ${DOCKER_REGISTRY-}eventeaseweb
